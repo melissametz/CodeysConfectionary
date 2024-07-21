@@ -63,7 +63,8 @@ app.post("/track", (req, res) => {
 if(validator.isInt(req.body.customerId)) {
   // Change the query to a prepared statement
   db.all(
-    `SELECT * FROM Employee WHERE EmployeeId = '${req.body.customerId}'`,
+    `SELECT * FROM Employee WHERE EmployeeId = $customerId`,
+    {$customerId: req.body.customerId},
     (err, rows) => {
       if (rows) {
         res.status(200);
