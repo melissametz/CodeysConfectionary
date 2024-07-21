@@ -74,6 +74,9 @@ if(validator.isInt(req.body.customerId)) {
       }
     }
   );
+ } else {
+  res.status(400);
+  res.json({ message: "Invalid customer ID" });
  }
 });
 
