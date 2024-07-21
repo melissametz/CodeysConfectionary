@@ -60,7 +60,7 @@ app.post("/submit", (req, res) => {
 
 app.post("/track", (req, res) => {
   // Validate form submission is an integer
-
+if(validator.isInt(req.body.customerId)) {
   // Change the query to a prepared statement
   db.all(
     `SELECT * FROM Employee WHERE EmployeeId = '${req.body.customerId}'`,
@@ -74,6 +74,7 @@ app.post("/track", (req, res) => {
       }
     }
   );
+ }
 });
 
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
